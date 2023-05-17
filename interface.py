@@ -1,4 +1,5 @@
 import wx
+import wx.lib.agw.hyperlink as hl
 import Initializer
 
 names = Initializer.language
@@ -190,7 +191,7 @@ class TabThree(wx.Panel):
         line2 = wx.StaticLine(self)
         vbox.Add(line2, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 5)
 
-        vbox.Add(self.report, 1, flag=wx.EXPAND, border=5)
+        vbox.Add(self.report, 1, flag=wx.EXPAND | wx.TOP | wx.BOTTOM, border=5)
 
         self.SetSizer(vbox)
 
@@ -228,6 +229,7 @@ class MyFrame(wx.Frame):
     def __init__(self, parent, title):
         wx.Frame.__init__(self, parent, title=title, size=(600, 330))
         self.notebook = wx.Notebook(self)
+        self.SetBackgroundColour(wx.Colour(250,250,250))
 
         self.tab_one = TabOne(self.notebook)
         self.tab_two = TabTwo(self.notebook)
@@ -237,11 +239,16 @@ class MyFrame(wx.Frame):
         self.notebook.AddPage(self.tab_one, names['TabsName']['OneTab'])
         self.notebook.AddPage(self.tab_two, names['TabsName']['TwoTab'])
         self.notebook.AddPage(self.tab_three, names['TabsName']['ThreeTab'])
-        # self.notebook.AddPage(self.tab_help, 'test')
+
         sizer = wx.BoxSizer(wx.VERTICAL)
+
         sizer.Add(self.notebook, 1, wx.EXPAND)
+        url = hl.HyperLinkCtrl(self, -1, names['About']['AboutPromt'], URL=names['About']['AboutMe'])
+        sizer.Add(url, 0,flag=wx.EXPAND | wx.LEFT | wx.BOTTOM, border=5)
+
 
         self.SetSizer(sizer)
+
 
 
 class MyListCtrl(wx.ListCtrl):

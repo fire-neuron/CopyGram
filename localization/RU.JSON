@@ -34,7 +34,8 @@
     "Ok": "Сканируем здесь"
   },
 
-  "About": { "AboutMe": "https://t.me/CopyGramTool"
+  "About": { "AboutMe": "https://t.me/CopyGramTool",
+    "AboutPromt": "Справочная информация"
 
   },
 

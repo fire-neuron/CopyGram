@@ -1,9 +1,7 @@
 {
   "telegram": {
     "token": "",
-    "problem_users": [
-
-    ],
+    "problem_users": [],
     "recipients": [
       ""
     ]
@@ -13,7 +11,7 @@
     "ftp_port": "",
     "ftp_password": "",
     "start_dir": "",
-    "host": "",
+    "host": "1",
     "folder_for_scan": "",
     "Test_Folder_For_Scan": ""
   },
