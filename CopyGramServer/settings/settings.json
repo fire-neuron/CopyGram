@@ -1,0 +1,24 @@
+{
+  "telegram": {
+    "token": "",
+    "problem_users": [
+
+    ],
+    "recipients": [
+      ""
+    ]
+  },
+  "FtpUploader": {
+    "ftp_user": "",
+    "ftp_port": "",
+    "ftp_password": "",
+    "start_dir": "",
+    "host": "",
+    "folder_for_scan": "",
+    "Test_Folder_For_Scan": ""
+  },
+  "main": {
+    "Language": "RU.json",
+    "Location": ""
+  }
+}

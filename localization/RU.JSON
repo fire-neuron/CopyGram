@@ -1,0 +1,105 @@
+{
+  "FTP_Uploader_Set":{
+    "ftp_server_adress": "Адрес FTP",
+    "ftp_server_login": "Логин FTP",
+    "ftp_server_port": "Порт FTP",
+    "ftp_server_pass": "Пароль к FTP серверу",
+    "ftp_server_start_folder": "Куда отправляем",
+    "ftp_folder_for_scan": "Где сканируем",
+    "ftp_hint": "Тут можно заполнять параметры авторизации",
+    "ftp_listbox_hint": "Выберите параметр",
+    "ftp_listbox_paths_hint": "Тут можно указать папку для сканирования",
+    "ftp_target_folder": "Целевая папка на FTP"
+  },
+  "TelegramSet":{
+  "TelegramListBox":"Список пользователей",
+  "SetIdHint": "Введите текст",
+    "CbxAdd": "Добавить пользователя",
+    "CbxDelete": "Удалить пользователя",
+    "Btn": "Выполнить",
+    "Token": "Установить TOKEN телеграм",
+    "Id": "Идентификатор",
+    "Username": "Имя пользователя",
+    "CtxDelete": "Удалить",
+    "CxHint": "Сделайте выбор",
+    "TokenMsg": "ТОКЕН успешно записан",
+    "TokenYour": "Ваш ТОКЕН: "
+
+
+},
+  "FTP_Uploader_Set_button": {
+    "write": "Записать",
+    "read": "Прочитать",
+    "Set": "Выбрать",
+    "Ok": "Сканируем здесь"
+  },
+
+"FTP_Hints": {
+  "ftp_server_adress": "Введите адрес FTP",
+    "ftp_server_login": "Введите  логин FTP",
+    "ftp_server_port": "Введите порт FTP",
+    "ftp_server_pass": "Введите пароль к FTP серверу",
+    "ftp_server_start_folder": "Укажите целевую  папку на FTP сервере",
+    "ftp_folder_for_scan": "Укажите место для сканирования "
+
+},
+
+  "TabsName": {
+    "OneTab": "FTP Загрузчик",
+    "TwoTab": "Телеграм",
+    "ThreeTab": "Сервер",
+    "TabZero": "Авторизация"
+  },
+
+  "ServerSet": {
+    "UploadOnServer": "Загрузить",
+    "UploadOnServerHint": "Укажите директорию для размещения скриптов",
+    "CronSet": "  Укажите время запуска скрипта:",
+    "Set": "Задать",
+    "GetReportBtn": "Получить отчёт",
+    "GetReportBtnHint": "Получить отчёт об ошибках на сервере синхронизации",
+    "GetSetting": "Прочитать настройки",
+    "GetCronText": "Прочитать CronTab",
+    "SetCronTab": "Записать CronTab",
+    "Tracer": "Тестировать",
+    "CronOff": "Отключить",
+    "CronDeleteOk": "Задача успешно удалена из cron",
+    "CronDeleteFall": "Во время удаления задачи произошла ошибка"
+  },
+
+  "AuthSet": {
+
+    "Auth": "Войти",
+    "Address": "Введите адрес:",
+    "Login": "Введите логин:",
+    "Pass": "Введите пароль:",
+    "Prompt": "Перед началом, авторизируйтесь на сервере SSH",
+    "Title": "Авторизация"
+  },
+
+  "TracerReport": {
+    "PythonDetected": "Интерпретатор успешно проверен,  версия интерпретатора  - ",
+    "SeekPython": "Поиск интерпретатора...",
+    "PythonFall": "Во время проверки интерпретатора возникла ошибка -  ",
+    "AvailabilityCheck": "Проверка наличия сценария",
+    "AvailabilityOK": "Сценарий успешно обнаружен",
+    "AvailabilityFall":"Не удалось обнаружить сценарий",
+    "AvailabilityAdress": "Его адрес  ",
+    "ContentFind": "Поиск тестовых файлов...",
+    "ContentFindOK": "Файлы успешно найдены",
+    "ContentFindFall": "Не удалось обнаружить тестовые файлы",
+    "GetReportPromt": "Ожидание запуска сценария... до 1 минуты",
+    "GetReportOK": "Сценарий оставил следующий отчёт: ",
+    "GetReportFall": "Не удалось получить отчёт",
+    "InstallOk": "Загрузка успешно завершена ",
+    "InstallFall": "Возникла ошибка во время загрузки",
+    "CronOk": "Время запуска успешно задано",
+    "CronFall": "Не удалось задать время запуска",
+    "CronBackFall":"Не удалось создать резервную копию cron, операция будет прервана",
+    "TelegramCheckOk": "Подключение к боту успешно установленно",
+    "TelegramUnAuth": "Не удалось пройти авторизацию в телеграм , проверьте токен",
+    "TelegramNetFall": "Не удалось подключится к серверу телеграм, проверьте настройки сети"
+
+  }
+
+}
