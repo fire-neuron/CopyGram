@@ -8,47 +8,31 @@ import Initializer
 import sshconnect
 wx = Initializer.wx
 ssh = None
-<<<<<<< HEAD
-=======
 turn = True
->>>>>>> 05e8314 (Initial commit)
 
 settings = Initializer.server_settings
 
 frame = None
 
-<<<<<<< HEAD
-=======
 def closeme(event):
     auth.Destroy()
     if turn:
         frame.Destroy()
->>>>>>> 05e8314 (Initial commit)
 
 def tab_init(object):
     global frame
     frame = object
-<<<<<<< HEAD
-
-    auth.login_button.Bind(wx.EVT_BUTTON, on_login_button)
-    auth.Show()
-    fill()
-=======
     auth.Bind(wx.EVT_CLOSE,closeme)
 
     auth.login_button.Bind(wx.EVT_BUTTON, on_login_button)
     auth.Show()
     # fill()
->>>>>>> 05e8314 (Initial commit)
 
 
 def on_login_button(event):
     global frame
     global ssh
-<<<<<<< HEAD
-=======
     global turn
->>>>>>> 05e8314 (Initial commit)
 
     host = auth.host_entry.GetValue()
     username = auth.username_entry.GetValue()
@@ -56,12 +40,8 @@ def on_login_button(event):
 
     try:
         ssh = sshconnect.open_session(host=host, username=username,
-<<<<<<< HEAD
-                                          password=password)
-=======
                                         password=password)
         turn = False
->>>>>>> 05e8314 (Initial commit)
         auth.Close()
         frame.Show()
 
