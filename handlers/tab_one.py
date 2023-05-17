@@ -20,18 +20,12 @@ def tab_init(object):
 
 
 
-    # frame.tab_one.show_pass_btn.Bind(wx.EVT_BUTTON, on_show_pass_btn_click)
+
     frame.tab_one.explorer.Bind(wx.EVT_BUTTON, on_set_scan_folder_click)
     frame.tab_one.write_button.Bind(wx.EVT_BUTTON, on_write_ftp_param_button_click)
     frame.tab_one.read_button.Bind(wx.EVT_BUTTON, on_read_button_click)
 
-# def on_show_pass_btn_click(event):
-#     text = frame.tab_one.ftp_pass
-#     if text.GetWindowStyleFlag() == 2048:
-#         text.SetWindowStyleFlag(0)
-#     else:
-#         text.SetWindowStyleFlag(wx.TE_PASSWORD)
-#     text.Refresh()
+
 
 def on_read_button_click(event):
     obj = frame.tab_one
