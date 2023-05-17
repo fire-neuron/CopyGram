@@ -26,7 +26,7 @@ def tab_init(object):
 
     auth.login_button.Bind(wx.EVT_BUTTON, on_login_button)
     auth.Show()
-    # fill()
+
 
 
 def on_login_button(event):
@@ -55,10 +55,7 @@ def on_login_button(event):
         dlg.Destroy()
 
 
-def fill():
-    auth.host_entry.SetValue('')
-    auth.username_entry.SetValue('')
-    auth.password_entry.SetValue('')
+
 
 
 auth = interface.Auth(None, interface.names['AuthSet']['Title'])
