@@ -4,7 +4,11 @@ import os
 import sys
 import sshconnect
 path_to_my_components = os.path.join(os.path.dirname(__file__), 'handlers')
+
+
 sys.path.append(path_to_my_components)
+
+
 ssh = None
 frame = None
 app = wx.App()
