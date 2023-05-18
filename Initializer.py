@@ -2,6 +2,10 @@
 import wx
 import json
 import os
+import sys
+
+
+
 target = None
 text_field_target = None
 settings = {}
@@ -9,16 +13,34 @@ language = {}
 server_settings = {}
 client_settings = {}
 program_name = 'CopyGramServer'
+try:
+    base_path =''
+    setpath_client = os.path.join("settings", "set.json")
+    setpath = os.path.join("settings", "set.json")
+    setpath_server = os.path.join(program_name, "settings", "settings.json")
+    with open(setpath_client,'r'):
+        pass
+except IOError:
+    base_path = sys._MEIPASS
+    setpath_client = os.path.join(base_path,"settings", "set.json")
+    setpath = os.path.join(base_path,"settings", "set.json")
+    setpath_server = os.path.join(base_path, program_name, "settings", "settings.json")
 
-setpath_client = os.path.join("settings", "set.json")
-setpath = os.path.join("settings", "set.json")
+
 with open(setpath, "rb") as settings_file:
     settings = json.load(settings_file)
     lang = settings['Main']['language']
-langpath = os.path.join("localization", lang)
+
+langpath = os.path.join(base_path,"localization", lang)
+
+
+
+
+
 with open(langpath, "rb") as localization:
     language = json.load(localization)
-setpath_server = os.path.join(program_name,"settings", "settings.json")
+
+
 with open(setpath_server, "rb") as settings_file:
     server_settings = json.load(settings_file)
 
