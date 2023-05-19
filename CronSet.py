@@ -38,6 +38,7 @@ def delete_back():
     ssh = sshconnect.ssh
     n = 10
     path = Initializer.client_settings['Main']['path_to_program'] + '/CronBack'
+    print(path)
     sftp = ssh.open_sftp()
     files = sftp.listdir(path)
     file_count = len(files)
