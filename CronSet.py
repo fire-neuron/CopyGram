@@ -7,6 +7,7 @@ client_settings = Initializer.client_settings
 
 
 def delete_cron_task():
+    BackupCron()
     ssh = sshconnect.ssh
     stdin, stdout, stderr = ssh.exec_command('crontab -l | grep -v "start.py" | crontab -')
     if stderr.read().decode('utf-8'):
@@ -38,7 +39,6 @@ def delete_back():
     ssh = sshconnect.ssh
     n = 10
     path = Initializer.client_settings['Main']['path_to_program'] + '/CronBack'
-    print(path)
     sftp = ssh.open_sftp()
     files = sftp.listdir(path)
     file_count = len(files)
