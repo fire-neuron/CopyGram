@@ -55,7 +55,7 @@ def set_tg_param_button(event):
     T2 = frame.tab_two
     users = Initializer.server_settings['telegram']['recipients']
     item_index = T2.telegram_set_comboBox.GetSelection()
-    value = T2.telegram_tf.GetValue()
+    value = T2.telegram_text_ctrl.GetValue()
     if item_index == 0:
         users.append(value)
         T2_сomplete_the_user_list()

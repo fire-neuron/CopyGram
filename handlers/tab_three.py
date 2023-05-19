@@ -58,8 +58,15 @@ def installer(event):
     Initializer.server_settings['main']['Location'] = remote_path + f'/{program_name}'
     Initializer.storeparametr()
 
-    with tarfile.open(f"{archive_name}.tar", "w") as tar:
-        tar.add(local_path)
+    try:
+        with tarfile.open(f"{archive_name}.tar", "w") as tar:
+            tar.add(local_path)
+    except IOError:
+        base_path = sys._MEIPASS
+        with tarfile.open(f"{archive_name}.tar", "w") as tar:
+            tar.add(os.path.join(base_path,local_path),arcname= program_name )
+
+
 
     try:
         sftp = ssh.open_sftp()
