@@ -10,7 +10,7 @@ import tracer
 import ClientNote
 import CronSet
 import sshconnect
-
+import shutil
 program_name = Initializer.program_name
 wx = Initializer.wx
 settings = Initializer.server_settings
@@ -50,6 +50,7 @@ def on_set_cron_button_click(event):
 
 
 def installer(event):
+
     archive_name = 'CopyGram'
     ssh = sshconnect.ssh
     local_path = program_name
@@ -57,6 +58,14 @@ def installer(event):
     remote_path = frame.tab_three.path.GetValue()
     Initializer.server_settings['main']['Location'] = remote_path + f'/{program_name}'
     Initializer.storeparametr()
+    try:
+        base_path = sys._MEIPASS
+        source_path_srv = os.path.join(os.path.expanduser("~"), "AppData\\Local\\CopyGram\\settings.json")
+        target_path_srv = os.path.join(base_path, program_name, "settings", "settings.json")
+        shutil.copyfile(source_path_srv,target_path_srv)
+    except:
+        pass
+
 
     try:
         with tarfile.open(f"{archive_name}.tar", "w") as tar:
