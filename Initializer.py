@@ -4,6 +4,7 @@ import json
 import os
 import sys
 import shutil
+import sshconnect
 
 
 
@@ -14,6 +15,33 @@ language = {}
 server_settings = {}
 client_settings = {}
 program_name = 'CopyGramServer'
+frame = None
+
+
+def get_frame(fr):
+    global frame
+    frame = fr
+
+# def set_hook(path):
+#     ssh = sshconnect.ssh
+#     set_source = os.path.join(path,'settings','settings.json')
+#     base_path = sys._MEIPASS
+#     set_target = os.path.join(base_path, program_name,'settings','settings.json')
+#
+#     sftp_client = ssh.open_sftp()
+#     try:
+#         sftp_client.lstat(set_source)
+#         sftp_client.get(set_source, set_target)
+#     except IOError:
+#         dlg = wx.MessageDialog(frame.tab_one,
+#                                'Failed to load settings', 'oops',
+#                                wx.OK | wx.ICON_INFORMATION)
+#         dlg.ShowModal()
+#         dlg.Destroy()
+#
+#     sftp_client.close()
+
+
 def set_prep():
     folder_path = os.path.join(os.path.expanduser("~"), "AppData\\Local\\CopyGram")
 

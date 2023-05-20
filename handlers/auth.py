@@ -25,6 +25,7 @@ def tab_init(object):
     auth.Bind(wx.EVT_CLOSE,closeme)
 
     auth.login_button.Bind(wx.EVT_BUTTON, on_login_button)
+    Initializer.get_frame(frame)
     auth.Show()
 
 
