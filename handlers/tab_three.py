@@ -64,49 +64,52 @@ def installer(event):
     local_path = program_name
 
     remote_path = frame.tab_three.path.GetValue()
-    Initializer.server_settings['main']['Location'] = remote_path + f'/{program_name}'
-    Initializer.storeparametr()
-    try:
-        base_path = sys._MEIPASS
-        source_path_srv = os.path.join(os.path.expanduser("~"), "AppData\\Local\\CopyGram\\settings.json")
-        target_path_srv = os.path.join(base_path, program_name, "settings", "settings.json")
-        shutil.copyfile(source_path_srv,target_path_srv)
-    except:
-        pass
+    if remote_path:
+        Initializer.server_settings['main']['Location'] = remote_path + f'/{program_name}'
+        Initializer.storeparametr()
+        try:
+            base_path = sys._MEIPASS
+            source_path_srv = os.path.join(os.path.expanduser("~"), "AppData\\Local\\CopyGram\\settings.json")
+            target_path_srv = os.path.join(base_path, program_name, "settings", "settings.json")
+            shutil.copyfile(source_path_srv,target_path_srv)
+        except:
+            pass
 
 
-    try:
-        with tarfile.open(f"{archive_name}.tar", "w") as tar:
-            tar.add(local_path)
-    except IOError:
-        base_path = sys._MEIPASS
-        with tarfile.open(f"{archive_name}.tar", "w") as tar:
-            tar.add(os.path.join(base_path,local_path),arcname= program_name )
+        try:
+            with tarfile.open(f"{archive_name}.tar", "w") as tar:
+                tar.add(local_path)
+        except IOError:
+            base_path = sys._MEIPASS
+            with tarfile.open(f"{archive_name}.tar", "w") as tar:
+                tar.add(os.path.join(base_path,local_path),arcname= program_name )
 
 
 
-    try:
-        sftp = ssh.open_sftp()
-        status = sftp.put(f"{archive_name}.tar", remote_path + f"/{archive_name}.tar")
-        sftp.close()
+        try:
+            sftp = ssh.open_sftp()
+            status = sftp.put(f"{archive_name}.tar", remote_path + f"/{archive_name}.tar")
+            sftp.close()
 
-        command = f"tar -xf {remote_path}/{archive_name}.tar -C {remote_path}"
-        ssh.exec_command(command)
+            command = f"tar -xf {remote_path}/{archive_name}.tar -C {remote_path}"
+            ssh.exec_command(command)
 
-        command = f"rm {remote_path}/{archive_name}.tar"
-        ssh.exec_command(command)
-        if os.path.exists(f"{archive_name}.tar"):
-            os.remove(f"{archive_name}.tar")
-        doexe = remote_path + f'/{program_name}' + '/start.py'
-        ssh.exec_command('chmod +x ' + doexe)
-        ClientNote.addstr(Initializer.language['TracerReport']['InstallOk'], frame)
-    except:
+            command = f"rm {remote_path}/{archive_name}.tar"
+            ssh.exec_command(command)
+            if os.path.exists(f"{archive_name}.tar"):
+                os.remove(f"{archive_name}.tar")
+            doexe = remote_path + f'/{program_name}' + '/start.py'
+            ssh.exec_command('chmod +x ' + doexe)
+            ClientNote.addstr(Initializer.language['TracerReport']['InstallOk'], frame)
+        except:
 
-        ClientNote.addstr(Initializer.language['TracerReport']['InstallFall'], frame)
+            ClientNote.addstr(Initializer.language['TracerReport']['InstallFall'], frame)
 
-    Initializer.client_settings['Main']['path_to_program'] = remote_path + f'/{program_name}'
+        Initializer.client_settings['Main']['path_to_program'] = remote_path + f'/{program_name}'
 
-    Initializer.store_client_parametr()
+        Initializer.store_client_parametr()
+    else:
+        ClientNote.addstr(Initializer.language['ServerSet']['EmptyString'], frame)
 
 
 def on_set_installer_path_button_click(event):
