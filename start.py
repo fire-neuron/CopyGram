@@ -4,8 +4,6 @@ import os
 import sys
 import sshconnect
 path_to_my_components = os.path.join(os.path.dirname(__file__), 'handlers')
-
-
 sys.path.append(path_to_my_components)
 
 
@@ -16,15 +14,12 @@ frame = interface.MyFrame(None, "CopyGram")
 
 
 
+
 def h_connect():
     import auth
     auth.tab_init(frame)
-    import tab_one
-    tab_one.tab_init(frame)
-    import tab_two
-    tab_two.tab_init(frame)
-    import tab_three
-    tab_three.tab_init(frame)
+
+
 
 
 h_connect()

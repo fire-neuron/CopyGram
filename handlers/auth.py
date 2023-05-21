@@ -29,6 +29,14 @@ def tab_init(object):
     auth.Show()
 
 
+def cont():
+    Initializer.load_settings()
+    import tab_one
+    tab_one.tab_init(frame)
+    import tab_two
+    tab_two.tab_init(frame)
+    import tab_three
+    tab_three.tab_init(frame)
 
 def on_login_button(event):
     global frame
@@ -44,6 +52,7 @@ def on_login_button(event):
                                         password=password)
         turn = False
         auth.Close()
+        cont()
         frame.Show()
 
 

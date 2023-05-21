@@ -22,24 +22,29 @@ def get_frame(fr):
     global frame
     frame = fr
 
-# def set_hook(path):
-#     ssh = sshconnect.ssh
-#     set_source = os.path.join(path,'settings','settings.json')
-#     base_path = sys._MEIPASS
-#     set_target = os.path.join(base_path, program_name,'settings','settings.json')
-#
-#     sftp_client = ssh.open_sftp()
-#     try:
-#         sftp_client.lstat(set_source)
-#         sftp_client.get(set_source, set_target)
-#     except IOError:
-#         dlg = wx.MessageDialog(frame.tab_one,
-#                                'Failed to load settings', 'oops',
-#                                wx.OK | wx.ICON_INFORMATION)
-#         dlg.ShowModal()
-#         dlg.Destroy()
-#
-#     sftp_client.close()
+def set_hook(path):
+    ssh = sshconnect.ssh
+    base_path = sys._MEIPASS
+    set_source =  path+'/settings'+'/settings.json'
+
+    set_target = os.path.join(base_path, program_name,'settings','settings.json')
+
+    sftp_client = ssh.open_sftp()
+    try:
+        print(set_source)
+        sftp_client.lstat(set_source)
+        print('exist')
+        sftp_client.get(set_source, set_target)
+        print('trouble Copy')
+    except IOError:
+        dlg = wx.MessageDialog(frame.tab_one,
+                               'Failed to load settings', 'oops',
+                               wx.OK | wx.ICON_INFORMATION)
+        dlg.ShowModal()
+        dlg.Destroy()
+
+    sftp_client.close()
+    return set_target
 
 
 def set_prep():
@@ -49,12 +54,9 @@ def set_prep():
         os.mkdir(folder_path)
         base_path = sys._MEIPASS
         source_path_cli = os.path.join(base_path, "settings", "set.json")
-        source_path_srv = os.path.join(base_path,program_name, "settings", "settings.json")
-
         target_cli = os.path.join(folder_path,"set.json")
-        target_svr = os.path.join(folder_path,"settings.json")
         shutil.copyfile(source_path_cli, target_cli)
-        shutil.copyfile(source_path_srv, target_svr)
+
     return folder_path
 
 try:
@@ -69,7 +71,8 @@ except IOError:
     base_path = set_prep()
     base_path2 = sys._MEIPASS
     setpath_client = os.path.join(base_path,"set.json")
-    setpath_server = os.path.join(base_path,"settings.json")
+    setpath_server = os.path.join(base_path2,program_name, "settings", "settings.json")
+
 
 
 with open(setpath_client, "rb") as settings_file:
@@ -79,21 +82,20 @@ with open(setpath_client, "rb") as settings_file:
 langpath = os.path.join(base_path2, "localization", lang)
 
 
-
-
-
-
-
 with open(langpath, "rb") as localization:
     language = json.load(localization)
 
 
-with open(setpath_server, "rb") as settings_file:
-    server_settings = json.load(settings_file)
+
 
 with open(setpath_client, "rb") as settings_file2:
     client_settings = json.load(settings_file2)
 
+def load_settings():
+    global server_settings
+    with open(setpath_server, "rb") as settings_file:
+        set_hook(client_settings['Main']['path_to_program'])
+        server_settings = json.load(settings_file)
 
 
 
@@ -103,5 +105,6 @@ def storeparametr():
 def store_client_parametr():
     with open(setpath_client, 'w') as write_file:
         json.dump(client_settings, write_file, indent=2)
+
 
 
