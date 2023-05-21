@@ -14,6 +14,7 @@ import shutil
 program_name = Initializer.program_name
 wx = Initializer.wx
 settings = Initializer.server_settings
+cli_settings = Initializer.client_settings
 
 frame = None
 
@@ -29,7 +30,10 @@ def tab_init(object):
 
 
 def on_tracer_button_click(event):
-    tracer.run(frame)
+    if  cli_settings['Main']['path_to_program']:
+        tracer.run(frame)
+    else:
+        ClientNote.addstr(Initializer.language['ServerSet']['ProgramNotFound'], frame)
 
 
 def on_cron_off_button_click(event):
@@ -40,13 +44,17 @@ def on_cron_off_button_click(event):
 
 
 def on_set_cron_button_click(event):
-    hour = frame.tab_three.time_picker.GetWxDateTime().GetHour()
-    minute = frame.tab_three.time_picker.GetWxDateTime().GetMinute()
 
-    if CronSet.delete_cron_task() and CronSet.add_cron_task(hour, minute):
-        ClientNote.addstr(Initializer.language['TracerReport']['CronOk'], frame)
+    if cli_settings['Main']['path_to_program']:
+        hour = frame.tab_three.time_picker.GetWxDateTime().GetHour()
+        minute = frame.tab_three.time_picker.GetWxDateTime().GetMinute()
+
+        if CronSet.delete_cron_task() and CronSet.add_cron_task(hour, minute):
+            ClientNote.addstr(Initializer.language['TracerReport']['CronOk'], frame)
+        else:
+            ClientNote.addstr(Initializer.language['TracerReport']['CronFall'], frame)
     else:
-        ClientNote.addstr(Initializer.language['TracerReport']['CronFall'], frame)
+        ClientNote.addstr(Initializer.language['ServerSet']['ProgramNotFound'], frame)
 
 
 def installer(event):

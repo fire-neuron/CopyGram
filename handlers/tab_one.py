@@ -52,17 +52,33 @@ def on_set_scan_folder_click(event):
 
 
 def on_write_ftp_param_button_click(event):
-    obj = frame.tab_one
+    lang = Initializer.language
 
-    settings['FtpUploader']['host'] = obj.ftp_host.GetValue()
+    try:
+        obj = frame.tab_one
 
-    settings['FtpUploader']['ftp_user'] = obj.ftp_login.GetValue()
+        settings['FtpUploader']['host'] = obj.ftp_host.GetValue()
 
-    settings['FtpUploader']['ftp_password'] = obj.ftp_pass.GetValue()
+        settings['FtpUploader']['ftp_user'] = obj.ftp_login.GetValue()
 
-    settings['FtpUploader']['ftp_port'] = obj.ftp_port.GetValue()
+        settings['FtpUploader']['ftp_password'] = obj.ftp_pass.GetValue()
 
-    settings['FtpUploader']['start_dir'] = obj.ftp_start_folder.GetValue()
-    settings['FtpUploader']['folder_for_scan'] = obj.local_path_scan.GetValue()
+        settings['FtpUploader']['ftp_port'] = obj.ftp_port.GetValue()
 
-    Initializer.storeparametr()
+        settings['FtpUploader']['start_dir'] = obj.ftp_start_folder.GetValue()
+        settings['FtpUploader']['folder_for_scan'] = obj.local_path_scan.GetValue()
+
+        Initializer.storeparametr()
+
+        dlg = wx.MessageDialog(frame.tab_one,
+                               lang['FTP_Uploader_Set']['WriteOk'], 'OK',
+                               wx.OK | wx.ICON_INFORMATION)
+        dlg.ShowModal()
+        dlg.Destroy()
+
+    except:
+        dlg = wx.MessageDialog(frame.tab_one,
+                               lang['FTP_Uploader_Set']['WriteFall'], 'Oops',
+                               wx.OK | wx.ICON_INFORMATION)
+        dlg.ShowModal()
+        dlg.Destroy()
