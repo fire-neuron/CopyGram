@@ -38,7 +38,7 @@ def set_hook(path):
         print('trouble Copy')
     except IOError:
         dlg = wx.MessageDialog(frame.tab_one,
-                               'Failed to load settings', 'oops',
+                               language['errors']['FailedToLoadSet'], 'oops',
                                wx.OK | wx.ICON_INFORMATION)
         dlg.ShowModal()
         dlg.Destroy()
@@ -94,7 +94,9 @@ with open(setpath_client, "rb") as settings_file2:
 def load_settings():
     global server_settings
     with open(setpath_server, "rb") as settings_file:
-        set_hook(client_settings['Main']['path_to_program'])
+        path_to_soft = client_settings['Main']['path_to_program']
+        if path_to_soft:
+            set_hook(path_to_soft)
         server_settings = json.load(settings_file)
 
 

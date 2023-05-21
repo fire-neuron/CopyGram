@@ -1,22 +1,22 @@
 {
   "telegram": {
-    "token": "5604152690:AAFsShTnYSutcIsLVRt-zLEUCLMJ6CFaVGU",
+    "token": "",
     "problem_users": [],
     "recipients": [
       "720064035"
     ]
   },
   "FtpUploader": {
-    "ftp_user": "yaroslav",
-    "ftp_port": "21",
-    "ftp_password": "12345",
+    "ftp_user": "",
+    "ftp_port": "",
+    "ftp_password": "",
     "start_dir": "",
-    "host": "192.168.85.1",
-    "folder_for_scan": "/home/yar/myfiles/CopyGramServer",
+    "host": "",
+    "folder_for_scan": "",
     "Test_Folder_For_Scan": ""
   },
   "main": {
     "Language": "RU.json",
-    "Location": "/home/yar/program/CopyGramServer"
+    "Location": ""
   }
 }
