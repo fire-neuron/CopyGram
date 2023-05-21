@@ -6,6 +6,8 @@ sys.path.append(path_to_my_components)
 import interface
 import Initializer
 import sshconnect
+import threading
+ConnectToSSH = None
 wx = Initializer.wx
 ssh = None
 turn = True
@@ -21,12 +23,14 @@ def closeme(event):
 
 def tab_init(object):
     global frame
+    global ConnectToSSH
     frame = object
     auth.Bind(wx.EVT_CLOSE,closeme)
 
     auth.login_button.Bind(wx.EVT_BUTTON, on_login_button)
     Initializer.get_frame(frame)
     auth.Show()
+    ConnectToSSH = threading.Thread(target=TryToConnect)
 
 
 def cont():
@@ -37,8 +41,7 @@ def cont():
     tab_two.tab_init(frame)
     import tab_three
     tab_three.tab_init(frame)
-
-def on_login_button(event):
+def TryToConnect():
     global frame
     global ssh
     global turn
@@ -49,7 +52,7 @@ def on_login_button(event):
 
     try:
         ssh = sshconnect.open_session(host=host, username=username,
-                                        password=password)
+                                      password=password)
         turn = False
         auth.Close()
         cont()
@@ -63,6 +66,15 @@ def on_login_button(event):
                                wx.OK | wx.ICON_INFORMATION)
         dlg.ShowModal()
         dlg.Destroy()
+        auth.status.SetLabel(Initializer.language["AuthSet"]["NotConnecting"])
+
+def on_login_button(event):
+    global ConnectToSSH
+    if not ConnectToSSH.is_alive():
+        ConnectToSSH.start()
+        auth.status.SetLabel(Initializer.language["AuthSet"]["Connecting"])
+
+
 
 
 

@@ -31,11 +31,11 @@ def set_hook(path):
 
     sftp_client = ssh.open_sftp()
     try:
-        print(set_source)
+
         sftp_client.lstat(set_source)
-        print('exist')
+
         sftp_client.get(set_source, set_target)
-        print('trouble Copy')
+
     except IOError:
         dlg = wx.MessageDialog(frame.tab_one,
                                language['errors']['FailedToLoadSet'], 'oops',

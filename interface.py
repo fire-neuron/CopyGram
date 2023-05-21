@@ -4,7 +4,6 @@ import Initializer
 
 names = Initializer.language
 
-
 class TabOne(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
@@ -78,41 +77,6 @@ class TabOne(wx.Panel):
         self.Layout()
 
         self.Centre(wx.BOTH)
-# class TabOne(wx.Panel):
-#     def __init__(self, parent):
-#         wx.Panel.__init__(self, parent)
-#         vbox = wx.BoxSizer(wx.VERTICAL)
-#         hbox = wx.BoxSizer(wx.HORIZONTAL)
-#         hbox2 = wx.BoxSizer(wx.HORIZONTAL)
-#         drops = [names['FTP_Uploader_Set']['ftp_server_adress'], names['FTP_Uploader_Set']['ftp_server_login'],
-#                  names['FTP_Uploader_Set']['ftp_server_pass'], names['FTP_Uploader_Set']['ftp_server_port'],
-#                  names['FTP_Uploader_Set']['ftp_target_folder']]
-#
-#         self.paths = wx.TextCtrl(self)
-#
-#         self.paths.SetHint(names['FTP_Uploader_Set']['ftp_listbox_paths_hint'])
-#         self.auth_on_ftp = wx.TextCtrl(self)
-#
-#         hbox.Add(self.auth_on_ftp, flag=wx.ALIGN_LEFT | wx.TOP, border=5, proportion=1)
-#         self.FTP_param_comboBox = wx.ComboBox(self, choices=drops, style=wx.CB_DROPDOWN)
-#         hbox.Add(self.FTP_param_comboBox, flag=wx.ALIGN_LEFT | wx.LEFT | wx.RIGHT | wx.TOP, border=5)
-#         self.FTP_param_comboBox.SetHint(names['FTP_Uploader_Set']['ftp_listbox_hint'])
-#         self.write_button = wx.Button(self, label=names['FTP_Uploader_Set_button']['write'])
-#         self.auth_on_ftp.SetHint(names['FTP_Uploader_Set']['ftp_hint'])
-#         hbox.Add(self.write_button, flag=wx.ALIGN_LEFT | wx.LEFT | wx.RIGHT | wx.TOP, border=5)
-#         vbox.Add(hbox, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=8)
-#
-#         hbox2.Add(self.paths, flag=wx.ALIGN_LEFT | wx.RIGHT | wx.TOP, border=5, proportion=1)
-#         self.open_explorer_button = wx.Button(self, size=(30, 22), label='...')
-#
-#         self.set_path_button = wx.Button(self, label=names['FTP_Uploader_Set_button']['write'])
-#         self.auth_on_ftp.SetHint(names['FTP_Uploader_Set']['ftp_hint'])
-#         hbox2.Add(self.open_explorer_button, flag=wx.ALIGN_LEFT | wx.TOP, border=5)
-#         hbox2.Add(self.set_path_button, flag=wx.ALIGN_LEFT | wx.LEFT | wx.RIGHT | wx.TOP, border=5)
-#         vbox.Add(hbox2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=8)
-#
-#         self.SetSizer(vbox)
-#
 
 class TabTwo(wx.Panel):
     def __init__(self, parent):
@@ -200,9 +164,18 @@ class Auth(wx.Frame):
 
     def __init__(self, parent, title):
         wx.Frame.__init__(self, parent, title=title)
+
         self.panel = wx.Panel(self)
         self.create_widgets()
         self.layout_widgets()
+        w = 400
+        h = 270
+        ws = wx.SystemSettings.GetMetric(wx.SYS_SCREEN_X)
+        hs = wx.SystemSettings.GetMetric(wx.SYS_SCREEN_Y)
+        x = (ws / 2) - (w / 2)
+        y = (hs / 2) - (h / 2)
+        self.SetSize(wx.Size(w, h))
+        self.SetPosition(wx.Point(x, y))
 
     def create_widgets(self):
         self.host_label = wx.StaticText(self.panel, label=Initializer.language['AuthSet']['Address'])
@@ -212,16 +185,22 @@ class Auth(wx.Frame):
         self.password_label = wx.StaticText(self.panel, label=Initializer.language['AuthSet']['Pass'])
         self.password_entry = wx.TextCtrl(self.panel, style=wx.TE_PASSWORD)
         self.login_button = wx.Button(self.panel, label=Initializer.language['AuthSet']['Auth'])
+        self.status = wx.StaticText(self.panel, label=Initializer.language['AuthSet']['NotConnecting'])
 
     def layout_widgets(self):
         sizer = wx.BoxSizer(wx.VERTICAL)
+
         sizer.Add(self.host_label, 0, wx.ALL, 5)
         sizer.Add(self.host_entry, 0, wx.ALL | wx.EXPAND, 5)
         sizer.Add(self.username_label, 0, wx.ALL, 5)
         sizer.Add(self.username_entry, 0, wx.ALL | wx.EXPAND, 5)
         sizer.Add(self.password_label, 0, wx.ALL, 5)
         sizer.Add(self.password_entry, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(self.login_button, 0, wx.ALL | wx.CENTER, 5)
+
+        sizer.Add(self.login_button, 0, wx.BOTTOM | wx.TOP | wx.CENTER , 5)
+        sizer.Add(self.status, 1, wx.ALL| wx.EXPAND,3)
+
+
         self.panel.SetSizer(sizer)
 
 
