@@ -42,6 +42,7 @@ def cont():
     import tab_three
     tab_three.tab_init(frame)
 def TryToConnect():
+    global ConnectToSSH
     global frame
     global ssh
     global turn
@@ -61,15 +62,16 @@ def TryToConnect():
 
 
     except:
-        dlg = wx.MessageDialog(auth.panel,
-                               'Access Denied', 'oops',
-                               wx.OK | wx.ICON_INFORMATION)
-        dlg.ShowModal()
-        dlg.Destroy()
         auth.status.SetLabel(Initializer.language["AuthSet"]["NotConnecting"])
+        ConnectToSSH = threading.Thread(target=TryToConnect)
+
+
+
+
 
 def on_login_button(event):
     global ConnectToSSH
+
     if not ConnectToSSH.is_alive():
         ConnectToSSH.start()
         auth.status.SetLabel(Initializer.language["AuthSet"]["Connecting"])
