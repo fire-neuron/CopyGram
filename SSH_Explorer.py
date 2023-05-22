@@ -10,7 +10,10 @@ names = Initializer.language
 class FileExplorer(wx.Dialog):
     def __init__(self, parent):
         wx.Dialog.__init__(self, parent, title="SSH_Explorer", style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER)
+
         self.ssh = sshconnect.ssh
+
+
         self.sftp = self.ssh.open_sftp()
 
         self.current_folder_path = '/home'
@@ -88,6 +91,11 @@ class FileExplorer(wx.Dialog):
 
 def start(parent):
     global Dialog
+    ssh = sshconnect.ssh
+    try:
+        ssh.exec_command('ls', timeout=3)
+    except:
+        return names['errors']['ConnectionFailed']
 
     Dialog = FileExplorer(parent)
     Dialog.sftp.close()

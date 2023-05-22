@@ -30,6 +30,13 @@ def tab_init(object):
 
 
 def on_tracer_button_click(event):
+    try:
+        sshconnect.ssh.exec_command('ls', timeout=3)
+    except:
+        ClientNote.addstr(Initializer.language['errors']['ConnectionFailed'], frame)
+        return
+
+
     if  cli_settings['Main']['path_to_program']:
         tracer.run(frame)
     else:
@@ -37,6 +44,11 @@ def on_tracer_button_click(event):
 
 
 def on_cron_off_button_click(event):
+    try:
+        sshconnect.ssh.exec_command('ls', timeout=3)
+    except:
+        ClientNote.addstr(Initializer.language['errors']['ConnectionFailed'], frame)
+        return
     if CronSet.delete_cron_task():
         ClientNote.addstr(Initializer.language['ServerSet']['CronDeleteOk'], frame)
     else:
@@ -44,6 +56,11 @@ def on_cron_off_button_click(event):
 
 
 def on_set_cron_button_click(event):
+    try:
+        sshconnect.ssh.exec_command('ls', timeout=3)
+    except:
+        ClientNote.addstr(Initializer.language['errors']['ConnectionFailed'], frame)
+        return
 
     if cli_settings['Main']['path_to_program']:
         hour = frame.tab_three.time_picker.GetWxDateTime().GetHour()
@@ -61,6 +78,13 @@ def installer(event):
 
     archive_name = 'CopyGram'
     ssh = sshconnect.ssh
+
+    try:
+        ssh.exec_command('ls', timeout=3)
+    except:
+        ClientNote.addstr(Initializer.language['errors']['ConnectionFailed'], frame)
+        return
+
     local_path = program_name
     remote_path = frame.tab_three.path.GetValue()
 

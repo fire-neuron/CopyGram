@@ -12,9 +12,15 @@ ssh = None
 
 
 def run(fr):
+
     global frame, ssh
     frame = fr
     ssh = sshconnect.ssh
+    try:
+        ssh.exec_command('ls', timeout=3)
+    except:
+        addstr(Initializer.language['errors']['ConnectionFailed'])
+        return
     python_check()
     availability_check()
     check_net_thread = threading.Thread(target=check_network)
