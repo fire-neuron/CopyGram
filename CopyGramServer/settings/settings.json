@@ -10,7 +10,7 @@
     "ftp_password": "",
     "start_dir": "",
     "host": "",
-    "folder_for_scan": "/home/yar/program",
+    "folder_for_scan": "",
     "Test_Folder_For_Scan": ""
   },
   "main": {
