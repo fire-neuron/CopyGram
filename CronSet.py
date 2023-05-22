@@ -27,7 +27,7 @@ def add_cron_task(hour='*', minute='*'):
     try:
         stdin, stdout, stderr = ssh.exec_command('crontab -l')
         curent_cron = stdout.read().decode('utf-8')
-        cron_task = curent_cron + f"{hour} {minute} * * * /usr/bin/python3 {path}{test_mode}\n"
+        cron_task = curent_cron + f"{minute} {hour} * * * /usr/bin/python3 {path}{test_mode}\n"
         stdin, stdout, stderr = ssh.exec_command('crontab -')
         stdin.write(cron_task)
         stdin.flush()

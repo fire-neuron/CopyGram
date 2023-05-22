@@ -1,6 +1,9 @@
 
 import os
 import sys
+
+import sshconnect
+
 path_to_my_components = os.path.join(os.path.dirname(__file__), '..')
 sys.path.append(path_to_my_components)
 import Initializer
@@ -57,6 +60,11 @@ def on_write_ftp_param_button_click(event):
     try:
         obj = frame.tab_one
 
+        sftp = sshconnect.ssh.open_sftp()
+        sftp.chdir(obj.local_path_scan.GetValue())
+        sftp.close()
+
+
         settings['FtpUploader']['host'] = obj.ftp_host.GetValue()
 
         settings['FtpUploader']['ftp_user'] = obj.ftp_login.GetValue()
@@ -76,6 +84,13 @@ def on_write_ftp_param_button_click(event):
         dlg.ShowModal()
         dlg.Destroy()
 
+    except IOError:
+        dlg = wx.MessageDialog(frame.tab_one,
+                               lang['errors']['FailedToScanFolder'], 'Oops',
+                               wx.OK | wx.ICON_INFORMATION)
+        dlg.ShowModal()
+        dlg.Destroy()
+        sftp.close()
     except:
         dlg = wx.MessageDialog(frame.tab_one,
                                lang['FTP_Uploader_Set']['WriteFall'], 'Oops',

@@ -94,7 +94,7 @@ with open(setpath_client, "rb") as settings_file2:
 def load_settings():
     global server_settings
     with open(setpath_server, "rb") as settings_file:
-        path_to_soft = client_settings['Main']['path_to_program']
+        path_to_soft = client_settings['Main']['path_to_program'] #script folder on server
         if path_to_soft:
             set_hook(path_to_soft)
         server_settings = json.load(settings_file)

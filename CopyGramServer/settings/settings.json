@@ -2,9 +2,7 @@
   "telegram": {
     "token": "",
     "problem_users": [],
-    "recipients": [
-      ""
-    ]
+    "recipients": []
   },
   "FtpUploader": {
     "ftp_user": "",
@@ -12,7 +10,7 @@
     "ftp_password": "",
     "start_dir": "",
     "host": "",
-    "folder_for_scan": "",
+    "folder_for_scan": "/home/yar/program",
     "Test_Folder_For_Scan": ""
   },
   "main": {
