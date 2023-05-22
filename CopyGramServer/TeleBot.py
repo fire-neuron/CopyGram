@@ -22,8 +22,6 @@ class TeleBot():
             if e.code == 403:
                 print('HTTP Error 403: Forbidden, please, unlock telegram bot')
 
-        def send_file(self, chat_id, file):
-            pass
 
     def CheckBot(self):
 
