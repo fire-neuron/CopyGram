@@ -220,10 +220,18 @@ class MyFrame(wx.Frame):
         self.notebook.AddPage(self.tab_three, names['TabsName']['ThreeTab'])
 
         sizer = wx.BoxSizer(wx.VERTICAL)
+        sizer_stat = wx.BoxSizer(wx.HORIZONTAL)
 
         sizer.Add(self.notebook, 1, wx.EXPAND)
         url = hl.HyperLinkCtrl(self, -1, names['About']['AboutPromt'], URL=names['About']['AboutMe'])
-        sizer.Add(url, 0,flag=wx.EXPAND | wx.LEFT | wx.BOTTOM, border=5)
+        cb = wx.CheckBox(self, label=names['ServerSet']['SaveSet'])
+
+        sizer_stat.Add(url, 0,flag=wx.ALIGN_CENTRE_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
+        sizer_stat.AddStretchSpacer()
+        sizer_stat.Add(cb, 0,flag=wx.ALIGN_CENTRE_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
+        sizer.Add(sizer_stat, 1, flag=wx.EXPAND | wx.LEFT | wx.BOTTOM | wx.TOP, border=0)
+
+
 
 
         self.SetSizer(sizer)
