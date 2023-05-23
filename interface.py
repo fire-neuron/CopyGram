@@ -224,11 +224,11 @@ class MyFrame(wx.Frame):
 
         sizer.Add(self.notebook, 1, wx.EXPAND)
         url = hl.HyperLinkCtrl(self, -1, names['About']['AboutPromt'], URL=names['About']['AboutMe'])
-        cb = wx.CheckBox(self, label=names['ServerSet']['SaveSet'])
+        self.cb = wx.CheckBox(self, label=names['ServerSet']['SaveSet'])
 
         sizer_stat.Add(url, 0,flag=wx.ALIGN_CENTRE_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
         sizer_stat.AddStretchSpacer()
-        sizer_stat.Add(cb, 0,flag=wx.ALIGN_CENTRE_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
+        sizer_stat.Add(self.cb, 0,flag=wx.ALIGN_CENTRE_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
         sizer.Add(sizer_stat, 1, flag=wx.EXPAND | wx.LEFT | wx.BOTTOM | wx.TOP, border=0)
 
 

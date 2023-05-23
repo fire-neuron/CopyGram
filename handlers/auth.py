@@ -32,9 +32,21 @@ def tab_init(object):
     auth.Show()
     ConnectToSSH = threading.Thread(target=TryToConnect)
 
+def CheckButtonSet():
+    state = Initializer.client_settings['Main']['SetLocal']
+    frame.cb.SetValue(state)
+
+
+def onCheckBox(event):
+        Initializer.client_settings['Main']['SetLocal'] = frame.cb.IsChecked()
+        Initializer.store_client_parametr()
+
+
 
 def cont():
     Initializer.load_settings()
+    CheckButtonSet()
+    frame.cb.Bind(wx.EVT_CHECKBOX, onCheckBox)
     import tab_one
     tab_one.tab_init(frame)
     import tab_two

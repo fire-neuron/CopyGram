@@ -1,6 +1,7 @@
 {
   "Main": {
     "language": "RU.JSON",
-    "path_to_program": ""
+    "path_to_program": "",
+    "SetLocal": false
   }
 }
