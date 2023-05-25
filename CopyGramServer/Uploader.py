@@ -21,7 +21,10 @@ ConRefuse = Language['ConRefuse']
 host = settings['FtpUploader']['host']
 ftp_user = settings['FtpUploader']['ftp_user']
 ftp_password = settings['FtpUploader']['ftp_password']
-ftp_port = int(settings['FtpUploader']['ftp_port'])
+if settings['FtpUploader']['ftp_port']:
+    ftp_port = int(settings['FtpUploader']['ftp_port'])
+else:
+    ftp_port = 21
 start_dir = settings['FtpUploader']['start_dir']
 report_path = Initializer.telegram_report_path
 path_to_advanced_report = Initializer.path_to_advanced_report
