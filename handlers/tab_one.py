@@ -70,8 +70,10 @@ def on_write_ftp_param_button_click(event):
         settings['FtpUploader']['ftp_user'] = obj.ftp_login.GetValue()
 
         settings['FtpUploader']['ftp_password'] = obj.ftp_pass.GetValue()
-
-        settings['FtpUploader']['ftp_port'] = obj.ftp_port.GetValue()
+        if not obj.ftp_port.GetValue():
+            settings['FtpUploader']['ftp_port'] = 21
+        else:
+            settings['FtpUploader']['ftp_port'] = obj.ftp_port.GetValue()
 
         settings['FtpUploader']['start_dir'] = obj.ftp_start_folder.GetValue()
         settings['FtpUploader']['folder_for_scan'] = obj.local_path_scan.GetValue()
