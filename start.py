@@ -34,7 +34,7 @@ def clear_set():
                 elif value_type == list:
                     data[key][key2] = []
 
-        Initializer.server_settings['main']['Language'] = 'RU.JSON' #TODO replace this
+        Initializer.server_settings['main']['Language'] = 'RU.json' #TODO replace this
         Initializer.storeparametr()
 def stop_ssh(event):
     ssh = sshconnect.ssh

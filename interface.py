@@ -231,7 +231,7 @@ class MyFrame(wx.Frame):
 
         sizer_stat.Add(url, 1, flag=wx.ALIGN_CENTER_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
         sizer_stat.AddStretchSpacer()
-        sizer_stat.Add(self.cb, 1, flag=wx.ALIGN_CENTER_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
+        sizer_stat.Add(self.cb, 0, flag=wx.ALIGN_CENTER_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
         sizer.Add(sizer_stat, 1, flag=wx.EXPAND | wx.ALL , border=0)
 
 

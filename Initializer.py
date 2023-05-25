@@ -24,7 +24,6 @@ def get_frame(fr):
 
 def set_hook(path):
     ssh = sshconnect.ssh
-    base_path = sys._MEIPASS
     set_source =  path+'/settings'+'/settings.json'
 
     set_target = os.path.join(base_path, program_name,'settings','settings.json')
