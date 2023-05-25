@@ -2,6 +2,7 @@ import wx
 import wx.lib.agw.hyperlink as hl
 import Initializer
 
+
 names = Initializer.language
 
 class TabOne(wx.Panel):
@@ -134,7 +135,7 @@ class TabThree(wx.Panel):
         line = wx.StaticLine(self)
         vbox.Add(line, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 5)
 
-        self.report = wx.ListCtrl(self, style=wx.LC_LIST)
+        self.report = wx.ListCtrl(self, style=wx.LC_REPORT | wx.LC_NO_HEADER)
         self.report.InsertColumn(0, 'report')
         self.report.SetColumnWidth(0, 600)
 
@@ -206,7 +207,7 @@ class Auth(wx.Frame):
 
 class MyFrame(wx.Frame):
     def __init__(self, parent, title):
-        wx.Frame.__init__(self, parent, title=title, size=(600, 330))
+        wx.Frame.__init__(self, parent, title=title, size=(630, 380))
         self.notebook = wx.Notebook(self)
         self.SetBackgroundColour(wx.Colour(250,250,250))
 
@@ -222,14 +223,16 @@ class MyFrame(wx.Frame):
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer_stat = wx.BoxSizer(wx.HORIZONTAL)
 
-        sizer.Add(self.notebook, 1, wx.EXPAND)
+
+        sizer.Add(self.notebook, 15, wx.EXPAND)
+
         url = hl.HyperLinkCtrl(self, -1, names['About']['AboutPromt'], URL=names['About']['AboutMe'])
         self.cb = wx.CheckBox(self, label=names['ServerSet']['SaveSet'])
 
-        sizer_stat.Add(url, 0,flag=wx.ALIGN_CENTRE_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
+        sizer_stat.Add(url, 1, flag=wx.ALIGN_CENTER_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
         sizer_stat.AddStretchSpacer()
-        sizer_stat.Add(self.cb, 0,flag=wx.ALIGN_CENTRE_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
-        sizer.Add(sizer_stat, 1, flag=wx.EXPAND | wx.LEFT | wx.BOTTOM | wx.TOP, border=0)
+        sizer_stat.Add(self.cb, 1, flag=wx.ALIGN_CENTER_VERTICAL | wx.LEFT | wx.BOTTOM, border=5)
+        sizer.Add(sizer_stat, 1, flag=wx.EXPAND | wx.ALL , border=0)
 
 
 
